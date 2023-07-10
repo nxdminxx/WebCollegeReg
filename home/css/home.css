@@ -1,0 +1,20 @@
+.custom-header {
+    background-color: #123C69; 
+  }
+
+.custom-section {
+    background-color: #EEE2DC; 
+}
+
+.custom-navbar {
+    background-color: #123C69;
+  }
+
+.custom-footer {
+  background-color: #123C69;
+}
+  
+.navbar-nav .nav-link {
+  color: #FFFFFF; /* Replace #FFFFFF with your desired font color */
+}
+  
