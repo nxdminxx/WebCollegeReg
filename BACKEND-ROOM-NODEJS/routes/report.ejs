@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <style>
+            table{
+                font-family: arial,sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td,th{
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+        </style>
+    </head>
+    <body>
+        <h3 style="text-align: center;">Room Registeration System</h3>
+        <table>
+            <tr>
+                <th>Name: <%= name %></th>
+                <th>Email: <%= email %></th>
+            </tr>
+            <tr>
+                <th>Contact Number: <%= contactNumber %></th>
+                <th>Payment Method: <%= paymentMethod %></th>
+            </tr>
+
+        </table>
+        <h3>Room Details</h3>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+            <% if(roomDetails.length > 0){ %>
+                <% roomDetails.forEach(room =>{ %>
+                    <tr>
+                        <td><%= room.name %></td>
+                        <td><%= room.category %></td>
+                        <td><%= room.price %></td>
+                        <td><%= room.total %></td>
+                    </tr>
+                    <%});%>
+                    <%}%>
+        </table>
+        <h3>Total: <%= totalAmount %></h3>
+        <h3>Thank You for registering with us.</h3>
+    </body>
+</html>
