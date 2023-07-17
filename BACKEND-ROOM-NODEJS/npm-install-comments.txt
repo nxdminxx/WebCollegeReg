@@ -1,0 +1,19 @@
+1. Create package.json file
+    - for first time only, if there is no package.json file yet
+    - npm init
+    - enter everything and last one type 'yes'
+
+2. Install packages
+    - npm install --save express mysql dotenv cors
+
+3. Install Nodemon 
+    - npm i --save-dev nodemon
+
+4. Install jsonwebtoken 
+    - npm install jsonwebtoken
+
+5. Install nodemailer
+    - npm install nodemailer
+
+6. Install ejs, html-pdf, uuid and path
+    - npm install ejs html-pdf path uuid
