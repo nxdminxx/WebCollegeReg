@@ -20,7 +20,7 @@ router.get('/details',auth.authenticateToken,(req,res,next)=>{
         }
     })
 
-    var query = "select count(id) as productCount from room";
+    var query = "select count(id) as roomCount from room";
 
     connection.query(query,(err,result)=>{
         
