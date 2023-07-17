@@ -20,7 +20,7 @@ router.get('/details',auth.authenticateToken,(req,res,next)=>{
         }
     })
 
-    var query = "select count(id) as roomCount from roomCount";
+    var query = "select count(id) as productCount from room";
 
     connection.query(query,(err,result)=>{
         
@@ -41,7 +41,7 @@ router.get('/details',auth.authenticateToken,(req,res,next)=>{
 
             var data = {
                 category:categoryCount,
-                product:productCount,
+                room:roomCount,
                 bill:billCount
             };
             return res.status(200).json(data);
