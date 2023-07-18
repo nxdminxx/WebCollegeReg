@@ -18,6 +18,7 @@ import { SignupComponent } from './signup/signup.component';
 import { NgxUiLoaderConfig, NgxUiLoaderModule, PB_DIRECTION, SPINNER } from 'ngx-ui-loader';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { LoginComponent } from './login/login.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig ={ //spinner loader attribute
   text:"loading....",
@@ -42,7 +43,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig ={ //spinner loader attribute
     AppHeaderComponent,
     AppSidebarComponent,
     SignupComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    LoginComponent
    ],
   imports: [
     BrowserModule,
