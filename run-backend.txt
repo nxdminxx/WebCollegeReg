@@ -1,3 +1,5 @@
+Backend Setup
+
 1. Create package.json file
     - for first time only, if there is no package.json file yet
     - npm init
@@ -17,3 +19,6 @@
 
 6. Install ejs, html-pdf, uuid and path
     - npm install ejs html-pdf path uuid
+
+7.Run backend
+-> npm start

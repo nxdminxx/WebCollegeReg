@@ -1,0 +1,64 @@
+Angular setting when to run in own branch/master 
+ 
+1.check angular version you have in laptop CMD
+-> ng version 
+---make sure angular version are 11.2.9---- 
+ 
+2.If not, reinstall angular 
+->npm uninstall -g @angular/cli->ng version (will show error then correct) 
+->npm install -g @angular/cli@11.2.9 
+-> ng version (now version will be 11.2.9) 
+ 
+3.Open project terminal in vs code /frontend, check again angular version 
+->ng version (11.2.9) / (11.2.14)
+->if verseion npm install
+->ng version now (11.2.14)
+
+=================== note angular version that you should have to run this project =================================
+Angular CLI: 11.2.14
+Node: 18.16.1
+OS: win32 x64
+
+Angular: 11.2.14
+... animations, cli, common, compiler, compiler-cli, core, forms
+... platform-browser, platform-browser-dynamic, router
+Ivy Workspace: Yes
+
+Package                         Version
+---------------------------------------------------------
+@angular-devkit/architect       0.1102.14
+@angular-devkit/build-angular   0.1102.14
+@angular-devkit/core            11.2.14
+@angular-devkit/schematics      11.2.14
+@angular/cdk                    11.2.13
+@angular/flex-layout            12.0.0-beta.35
+@angular/material               11.2.13
+@schematics/angular             11.2.14
+@schematics/update              0.1102.14
+rxjs                            6.6.7
+typescript                      4.1.6
+=========================================================================================
+ 
+4. Run Project in /frontend terminal
+->$env:NODE_OPTIONS="--openssl-legacy-provider" 
+-> ng s (wait until succesfully compile) 
+ 
+*do not close this terminal will show the error or whether update are succesfully compile... 
+ 
+5.Thats it.. check frontend by localhost:4200 or check the port given :) 
+ 
+***************************************************
+note: if has prob with module (only in master)
+
+-> remove node_module 
+->npm install npm install --legacy-peer-deps
+
+***************************************************
+any changes you made in your branch, do not merge with master if project
+not succesfully compile (ng s) to avoid node_module file redundant 
+as git not commit the node_module
+
+***************************************************
+P/s : if need to install any new method with npm, eg npm ngx-loader
+please put this command in your line too ->> --legacy-peer-deps
+*it will succesfully install without dependencies problem

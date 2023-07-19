@@ -33,6 +33,15 @@ li {
   color: #fff;
 }
 
+.navbar.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  /* Add any additional styles you want for the sticky navbar */
+}
+
 .nav-links a {
   color: #fff;
 }
@@ -205,7 +214,7 @@ input[type=checkbox] {
   color: #5B1F33;
   box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.3);
   filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.3));
-  transition: 0.7s;
+  transition: 0.2s;
 }
 
 .btn-nav-grad {
@@ -251,4 +260,8 @@ background: linear-gradient(257deg, rgba(203,145,159,1) 0%, rgba(193,99,100,1) 1
 
 .logo-image{
   padding-right: 10px;
+}
+
+.content-container {
+  margin-top: 60px; /* Adjust the margin value to match the height of your navbar */
 }
