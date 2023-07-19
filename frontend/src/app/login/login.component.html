@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="accent">
     <mat-toolbar-row fxLayout="row">
         <span class="title-center">Login</span>
     </mat-toolbar-row>
@@ -33,5 +33,5 @@
 <mat-dialog-actions align="center">
     <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()"
     [disabled]="!(loginForm.valid && loginForm.dirty)">Login</button>
-    <button mat-raised-button color="primary" mat-dialog-close>Close</button>
+    <button mat-raised-button color="accent" mat-dialog-close>Close</button>
 </mat-dialog-actions>

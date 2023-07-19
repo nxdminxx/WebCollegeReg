@@ -1,18 +1,82 @@
-<div class="bg-image"></div>
-<app-best-seller></app-best-seller>
-
 <div class="wrapper sticky">
-  <nav class="navbar-fixed-top">
-    <a href="#" class="logo">
-      <mat-icon>storefront</mat-icon>CollegeU
-    </a>
-    <ul>
-      <li><a (click)="loginAction()">Login</a></li>
-      <li><a (click)="signupAction()">Signup</a></li>
-      <li><a (click)="forgotPasswordAction()">Forgot Password?</a></li>
+  <nav class="navbar">
+    <!-- LOGO -->
+    <div class="logo">
+      <img class="logo-image" src="assets/logo.png" alt="logo Logo">CollegeU
+  </div>
+
+    <!-- NAVIGATION MENU -->
+    <ul class="nav-links">
+
+      <!-- USING CHECKBOX HACK -->
+      <input type="checkbox" id="checkbox_toggle" />
+      <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+
+      <!-- NAVIGATION MENUS -->
+      <div class="menu">
+
+        <li><a href="/">Home</a></li>
+        <li><a href="/">About</a></li>
+
+        <li class="services">
+          <a href="/">Contact</a>
+        </li>
+
+        <li><a (click)="loginAction()">Login</a></li>
+
+        <button type="button" class="btn-nav" (click)="signupAction()">
+            Sign up for free
+        </button>
+
+        <li><a (click)="forgotPasswordAction()">Forgot Password?</a></li>
+
+      </div>
+
     </ul>
+
   </nav>
 </div>
-<div class="footer" id="signup">
-  <h2>All right By CollegU</h2>
+
+<!-- Header-->
+<section class="section-1">
+  <div class="container px-5">
+      <div class="row gx-5 align-items-center justify-content-center">
+          <div class="col-lg-8 col-xl-7 col-xxl-6">
+              <div class="my-5 text-center text-xl-start">
+                  <h1 class="display-5 fw-bolder text-white mb-2">Welcome to College U blm edit</h1>
+                  <p class="lead fw-normal text-white-50 mb-4"><br>This is where you can learn with us and embark on a transformative journey. 
+                      Discover a variety of courses tailored to your interests, passions, and ambitions.<br></p>
+                  <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                      <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Register Now!</a>
+                      <a class="btn btn-outline-light btn-lg px-4" href="#!">Learn More</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+<section class ="section-2">
+
+</section>
+
+<section class ="section-3">
+
+</section>
+
+<section class ="section-2">
+
+</section>
+
+<div class="footer-basic">
+  <footer>
+      <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
+      <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Home</a></li>
+          <li class="list-inline-item"><a href="#">About</a></li>
+          <li class="list-inline-item"><a href="#">Contact Us</a></li>
+          <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+      </ul>
+      <p class="copyright">CollegeU © 2023</p>
+  </footer>
 </div>
