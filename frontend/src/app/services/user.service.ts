@@ -7,27 +7,42 @@ import { environment } from 'src/environments/environment';
 })
 export class UserService {
   url = environment.apiUrl;
+  //url = 'api/user';
+
 
   constructor(private httpClient: HttpClient) {}
 
+  // Method to fetch user data for the currently logged-in user
+  getUserData() {
+    return this.httpClient.get(`${this.url}/user/get`);
+  }
+
+  // Method to fetch admin user data
+  getAdminUserData() {
+    // user has a fixed ID of 1
+    const adminId = 1;
+    return this.httpClient.get(`${this.url}/users/${adminId}`);
+  }
+
   signup(data: any) {
-    return this.httpClient.post(this.url +
-       '/user/signup', data, {
+    return this.httpClient.post(`${this.url}/user/signup`, data, {
       headers: new HttpHeaders().set('Content-Type', 'application/json'),
     });
   }
 
   forgotPassword(data:any) {
-    return this.httpClient.post(this.url+
-      "/user/forgotpassword/", data, {
+    return this.httpClient.post(`${this.url}/user/forgotpassword/`, data, {
         headers: new HttpHeaders().set('Content-Type', 'application/json')
       })
   }
 
   login(data:any) {
-    return this.httpClient.post(this.url+
-      "/user/login", data, {
+    return this.httpClient.post(`${this.url}/user/login/`, data, {
         headers: new HttpHeaders().set('Content-Type', 'application/json')
       })
+  }
+
+  checkToken(){
+    return this.httpClient.get(`${this.url}/user/checkToken`);
   }
 }
