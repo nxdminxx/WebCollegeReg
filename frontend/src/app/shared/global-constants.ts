@@ -3,6 +3,10 @@ export class GlobalConstants{
     //Message
     public static genericError:string = "Something went wrong. Please try again later";
 
+
+public static unauthroized:string = "you are not authorized person to access this page";
+
+
     //Regex
     public static nameRegex:string = "[a-zA-Z0-9 ]*";
 
@@ -12,4 +16,5 @@ export class GlobalConstants{
 
     //Variable
     public static error:string = "error";
+
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+</head>
+<body>
+    <mat-card>
+        <b><span>DashBoard</span></b>
+    </mat-card>
+    <br>
+    <div class="row">
+        <div class="column">
+            <div class="card">
+                <div class="container">
+                    <h2 class="title ">Total Category:</h2>
+                    <h1 class="title">{{data?.Category}}</h1>
+                    <p class=""><button class="button"[routerlink]="['/cafe/category']">View Category</button></p>
+                
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <div class="container">
+                    <h2 class="title ">Total Product:</h2>
+                    <h1 class="title">{{data?.Product}}</h1>
+                    <p class=""><button class="button"[routerlink]="['/cafe/product']">View Product</button></p>
+                
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <div class="container">
+                    <h2 class="title ">Total Bill:</h2>
+                    <h1 class="title">{{data?.Bill}}</h1>
+                    <p class=""><button class="button"[routerlink]="['/cafe/bill']">View Bill</button></p>
+                
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

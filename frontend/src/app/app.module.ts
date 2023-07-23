@@ -1,3 +1,4 @@
+import { TokenIntercepterInterceptor } from './services/token-intercepter.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -13,7 +14,7 @@ import { SharedModule } from './shared/shared.module';
 import { FullComponent } from './layouts/full/full.component';
 import { AppHeaderComponent } from './layouts/full/header/header.component';
 import { AppSidebarComponent } from './layouts/full/sidebar/sidebar.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
 import { NgxUiLoaderConfig, NgxUiLoaderModule, PB_DIRECTION, SPINNER } from 'ngx-ui-loader';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -59,7 +60,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig ={ //spinner loader attribute
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),   // for spinner loader
     NgxSpinnerModule, // Add NgxSpinnerModule
   ],
-  providers: [],
+  providers: [HttpClientModule, {provide:HTTP_INTERCEPTORS,useClass:TokenIntercepterInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
