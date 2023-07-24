@@ -1,3 +1,5 @@
+@import 'home.component.css';
+
 /* UTILITIES */
 * {
   margin: 0;
@@ -12,21 +14,21 @@
   }
 
 body {
-  font-family: cursive;
+  font-family: cursive !important;
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 li {
-  list-style: none;
+  list-style: none !important;
 }
 
 /* NAVBAR STYLING STARTS */
 .navbar {
-  display: flex;
-  align-items: center;
+  display: flex !important;
+  align-items: center ;
   justify-content: space-between;
   padding: 20px;
   background-color: #AB3B61;

@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~11.2.10",
     "@angular/router": "~11.2.10",
     "bootstrap": "^5.3.0",
+    "jwt-decode": "^3.1.2",
     "ngx-spinner": "^11.0.2",
     "ngx-ui-loader": "^11.0.0",
     "rxjs": "~6.6.0",
