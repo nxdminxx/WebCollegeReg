@@ -59,6 +59,6 @@ not succesfully compile (ng s) to avoid node_module file redundant
 as git not commit the node_module
 
 ***************************************************
-P/s : if need to install any new method with npm, eg npm ngx-loader
+P/s : if need to install any new method with npm, e npm ngx-loader
 please put this command in your line too ->> --legacy-peer-deps
 *it will succesfully install without dependencies problem
