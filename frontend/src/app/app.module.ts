@@ -13,12 +13,14 @@ import { SharedModule } from './shared/shared.module';
 import { FullComponent } from './layouts/full/full.component';
 import { AppHeaderComponent } from './layouts/full/header/header.component';
 import { AppSidebarComponent } from './layouts/full/sidebar/sidebar.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
 import { NgxUiLoaderConfig, NgxUiLoaderModule, PB_DIRECTION, SPINNER } from 'ngx-ui-loader';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
+import { TokenInterceptorInterceptor } from './services/token-interceptor.interceptor';
+import { MenuItems } from './shared/menu-item';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig ={ //spinner loader attribute
   text:"loading....",
@@ -58,8 +60,13 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig ={ //spinner loader attribute
     HttpClientModule,  /*for http req or res*/
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),   // for spinner loader
     NgxSpinnerModule, // Add NgxSpinnerModule
+    
   ],
-  providers: [],
+
+  providers: [
+    HttpClientModule,{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorInterceptor,multi:true},
+    MenuItems
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
