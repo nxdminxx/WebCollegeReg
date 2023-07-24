@@ -21,6 +21,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { LoginComponent } from './login/login.component';
 import { TokenInterceptorInterceptor } from './services/token-interceptor.interceptor';
 import { MenuItems } from './shared/menu-item';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig ={ //spinner loader attribute
   text:"loading....",
@@ -60,6 +61,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig ={ //spinner loader attribute
     HttpClientModule,  /*for http req or res*/
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),   // for spinner loader
     NgxSpinnerModule, // Add NgxSpinnerModule
+    MatDialogModule
     
   ],
 
