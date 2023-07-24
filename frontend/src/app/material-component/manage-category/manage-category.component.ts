@@ -55,7 +55,7 @@ export class ManageCategoryComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  handleAddAction(value: any) {
+  handleAddAction() { //(value:any)
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       action: 'Add'
