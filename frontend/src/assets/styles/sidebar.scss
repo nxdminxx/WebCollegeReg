@@ -8,6 +8,7 @@ File: scss
 /*******************
 Main sidebar
 ******************/
+@import 'src/theme.scss';
 
 mat-sidenav {
   width: 240px;
@@ -27,7 +28,7 @@ mat-sidenav {
             &:hover{
                 background: none;
                 > a{
-                  color:$themecolor;
+                  color: #ab3b61;
                 }
             }
         }
@@ -56,7 +57,7 @@ mat-sidenav {
             }
         }
         &.selected > .mat-list-item-content > a{
-            background: $themecolor-alt;
+            background: #912645;
             border-radius: $radius;
             color:$white;
             
@@ -71,7 +72,7 @@ mat-sidenav {
         }
         &.selected .sub-item .mat-list-item-content a.selected{
             background: transparent;
-            color:$inverse;
+            color:#ab3b61;
             font-weight: 500;               
         }
     }
