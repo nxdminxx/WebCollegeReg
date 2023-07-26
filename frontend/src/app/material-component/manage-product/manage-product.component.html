@@ -1,0 +1,44 @@
+<mat-card>
+    <b><span>Manage Product</span></b>
+    <button mat-flat-button color="primary" class="float-right" (click)="handleAddAction()"> Add Product</mat-flat-button></button>
+</mat-card>
+<hr>
+<mat-card>
+    <mat-form-field appearance="fill">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+</mat-card>
+<hr>
+<div class="responsive_table">
+    <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <th mat-cell *matCellDef="Let element">{{element.name}}</th>
+        </ng-container>
+
+        <ng-container matColumnDef="categoryName">
+            <th mat-header-cell *matHeaderCellDef>Category</th>
+            <th mat-cell *matCellDef="Let element">{{element.categoryName}}</th>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Description</th>
+            <th mat-cell *matCellDef="Let element">{{element.description}}</th>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef>Price</th>
+            <th mat-cell *matCellDef="Let element">{{element.price}}</th>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef>Action</th>
+            <th mat-cell *matCellDef="Let element" class="action-link">
+                <button mat-icon-button color="primary" matTooltip="Edit" (click)="handleEditAction(element)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            <th>
+        </ng-container>
+    </table>
+</div>
