@@ -11,6 +11,10 @@ import { MaterialRoutes } from './material.routing';
 import { MaterialModule } from '../shared/material-module';
 import { ViewBillProductsComponent } from './dialog/view-bill-products/view-bill-products.component';
 import { ManageProductComponent } from './manage-product/manage-product.component';
+import { ProductComponent } from './dialog/product/product.component';
+import { ManageOrderComponent } from './manage-order/manage-order.component';
+import { ViewBillComponent } from './view-bill/view-bill.component';
+import { ManageUserComponent } from './manage-user/manage-user.component';
 
 @NgModule({
   imports: [
@@ -26,7 +30,11 @@ import { ManageProductComponent } from './manage-product/manage-product.componen
   providers: [],
   declarations: [
     ViewBillProductsComponent,
-    ManageProductComponent    
+    ManageProductComponent,
+    ProductComponent,
+    ManageOrderComponent,
+    ViewBillComponent,
+    ManageUserComponent    
   ]
 })
 export class MaterialComponentsModule {}
