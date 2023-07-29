@@ -80,8 +80,7 @@ downloadReportAction(values:any){
     (response)=>{
       saveAs(response,values.uuid+'.pdf');
       this.ngxService.stop();
-    }
-  )
+    })
 }
 
 handleDeleteAction(values:any){
