@@ -12,6 +12,7 @@ import { GlobalConstants } from 'src/app/shared/global-constants';
   styleUrls: ['./change-password.component.scss'],
 })
 export class ChangePasswordComponent implements OnInit {
+
   changePasswordForm: any = FormGroup;
   responseMessage: any;
 
@@ -25,17 +26,16 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.changePasswordForm = this.formBuilder.group({
-      oldPassword: [null, ['', Validators.required]],
-      newPassword: [null, ['', Validators.required]],
-      confirmPassword: [null, ['', Validators.required]],
+      oldPassword: [null, [Validators.required]],
+      newPassword: [null, [Validators.required]],
+      confirmPassword: [null, [Validators.required]],
     });
   }
 
   validateSubmit() {
     if (
       this.changePasswordForm.controls['newPassword'].value !=
-      this.changePasswordForm.controls['confirmPassword'].value
-    ) {
+      this.changePasswordForm.controls['confirmPassword'].value) {
       return true;
     } else {
       return false;
@@ -54,8 +54,11 @@ export class ChangePasswordComponent implements OnInit {
     
     this.userService.changePassword(data).subscribe((response: any) => {
         this.ngxService.stop();
+
         this.responseMessage = response?.message;
+
         this.dialogRef.close();
+
         this.snackbarService.openSnackBar(this.responseMessage, 'success');
       },(error) => {
         console.log(error);
@@ -65,9 +68,7 @@ export class ChangePasswordComponent implements OnInit {
         } else {
           this.responseMessage = GlobalConstants.genericError;
         }
-        this.snackbarService.openSnackBar(
-          this.responseMessage,
-          GlobalConstants.error);
+        this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
       })
   }
 }

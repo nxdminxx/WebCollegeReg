@@ -9,8 +9,10 @@ var uuid = require('uuid');
 var auth = require('../services/authentication');
 
 router.post('/generateReport',auth.authenticateToken,(req,res)=>{
+    console.log('Generating report...');
     const generatedUuid = uuid.v1();
     const bookingDetails = req.body;
+    console.log('Room details:', bookingDetails.roomDetails);
     var roomDetailsReport = JSON.parse(bookingDetails.roomDetails);
     var query = "insert into bill (name,uuid,email,contactNumber,paymentMethod,total,roomDetails,createdBy) values(?,?,?,?,?,?,?,?)";
     connection.query(query,[bookingDetails.name, generatedUuid, bookingDetails.email, bookingDetails.contactNumber, bookingDetails.paymentMethod, bookingDetails.totalAmount, bookingDetails.roomDetails, res.locals.email],(err,results)=>{
@@ -29,6 +31,7 @@ router.post('/generateReport',auth.authenticateToken,(req,res)=>{
                     })
                 }
             })
+            console.log('Report generation successful.');
         }else{
             return res.status(500).json(err);
         }

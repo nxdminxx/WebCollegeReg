@@ -33,12 +33,10 @@ export class ManageCategoryComponent implements OnInit {
   }
 
   tableData() {
-    this.categoryService.getCategorys().subscribe(
-      (response: any) => {
+    this.categoryService.getCategorys().subscribe((response: any) => {
         this.ngxService.stop();
         this.dataSource = new MatTableDataSource(response);
-      },
-      (error: any) => {
+      },(error: any) => {
         this.ngxService.stop();
         if (error.error?.message) {
           this.responseMessage = error.error?.message;
@@ -46,26 +44,26 @@ export class ManageCategoryComponent implements OnInit {
           this.responseMessage = GlobalConstants.genericError;
         }
         this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
-      }
-    );
+      })
   }
 
-  applyFilter(event: Event) {
+  applyFilter(event:Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  handleAddAction() { //(value:any)
+  handleAddAction() { 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       action: 'Add'
-    };
+    }
     dialogConfig.width = '850px';
     const dialogRef = this.dialog.open(CategoryComponent, dialogConfig);
     this.router.events.subscribe(() => {
       dialogRef.close();
     });
-    const sub = dialogRef.componentInstance.onAddCategory.subscribe((response) => {
+    const sub = dialogRef.componentInstance.onAddCategory.subscribe(
+      (response) => {
       this.tableData();
     });
   }

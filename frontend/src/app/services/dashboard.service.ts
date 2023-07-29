@@ -13,7 +13,7 @@ export class DashboardService {
     private httpClient:HttpClient
   ) { }
 
-  getDetail(){
+  getDetails(){
     return this.httpClient.get(this.url + "/dashboard/details");
   }
 

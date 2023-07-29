@@ -9,9 +9,9 @@
             <div fxLayout="row wrap">
                 <mat-form-field appearance="fill" fxFlex>
                     <mat-label>name</mat-label>
-                    <input mat-input formControllerName="name" required>
-                    <mat-error * ngIf="categoryForm.controls.name.touched && categoryForm.controls.name.invalid">
-                        <span * ngIf="categoryForm.controls.name.errors.required">This is field is required</span>
+                    <input matInput formControlName="name" required>
+                    <mat-error *ngIf="categoryForm.controls.name.touched && categoryForm.controls.name.invalid">
+                        <span *ngIf="categoryForm.controls.name.errors.required">This is field is required</span>
                     </mat-error>
                 </mat-form-field>
             </div>
