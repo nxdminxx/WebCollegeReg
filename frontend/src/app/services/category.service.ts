@@ -8,8 +8,6 @@ import { environment } from 'src/environments/environment';
 export class CategoryService {
   url = environment.apiUrl;
 
-  
-
   constructor(private httpClient:HttpClient) { }
 
 add(data:any){
