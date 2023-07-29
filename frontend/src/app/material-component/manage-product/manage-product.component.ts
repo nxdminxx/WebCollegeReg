@@ -16,10 +16,12 @@ import { GlobalConstants } from 'src/app/shared/global-constants';
 
 export class ManageProductComponent implements OnInit {
 
-  displayedColumn:string[] = ['name','categoryName','description','price','edit'];
+  displayedColumns:string[] = ['name','RoomName','description','price','edit'];
   dataSource:any;
   responseMessage:any;
-  constructor(private productService:ProductService,
+
+  constructor(
+    private productService:ProductService,
     private ngxService:NgxUiLoaderService,
     private dialog:MatDialog,
     private snackbarService:SnackbarService,
@@ -30,7 +32,6 @@ export class ManageProductComponent implements OnInit {
       this.tableData();
   }
 
-
   tableData(){
     this.productService.getProducts().subscribe((response:any)=>{
       this.ngxService.stop();
@@ -39,24 +40,23 @@ export class ManageProductComponent implements OnInit {
       this.ngxService.stop();
       console.log(error);
       if(error.error?.message){
-        this.responseMessage= error.error?.message;
+        this.responseMessage = error.error?.message;
       }
       else{
-        this.responseMessage=GlobalConstants.genericError;
+        this.responseMessage = GlobalConstants.genericError;
       }
       this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
     })
   }
 
   applyFilter(event:Event){
-    const filterValue=(event.target as HTMLInputElement).value;
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   handleEditAction(value:any){}
   handleAddAction(){}
   handleDeleteAction(value:any){}
-
   onChange(status:any,id:any){}
 
 }
