@@ -9,6 +9,10 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 import { GlobalConstants } from 'src/app/shared/global-constants';
 import { saveAs } from 'file-saver';
 
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog'; // Import MatDialog
+import { Router } from '@angular/router'; // Import Router
+import { ViewBillProductsComponent } from '../dialog/view-bill-products/view-bill-products.component';
+
 @Component({
   selector: 'app-manage-order',
   templateUrl: './manage-order.component.html',
@@ -24,6 +28,8 @@ export class ManageOrderComponent implements OnInit {
   price: any;
   totalAmount: number = 0;
   responseMessage: any;
+  router: any;
+  dialog: any;
 
   constructor(private formBuilder: FormBuilder,
     private categoryService: CategoryService,
@@ -71,7 +77,7 @@ export class ManageOrderComponent implements OnInit {
       this.manageOrderForm.controls['price'].setValue('');
       this.manageOrderForm.controls['quantity'].setValue('');
       this.manageOrderForm.controls['total'].setValue(0);
-    }, (error: any) => {
+    },(error: any) => {
       this.ngxService.stop();
       if (error.error?.message) {
         this.responseMessage = error.error?.message;
@@ -121,7 +127,12 @@ export class ManageOrderComponent implements OnInit {
   }
 
   validateSubmit() {
-    if (this.totalAmount === 0 || this.manageOrderForm.controls['name'].value === null || this.manageOrderForm.controls['email'].value === null || this.manageOrderForm.controls['contactNumber'].value === null || this.manageOrderForm.controls['paymentMethod'].value === null || !(this.manageOrderForm.controls['contactNumber'].valid) || !(this.manageOrderForm.controls['email'].valid))
+    if (this.totalAmount === 0 || this.manageOrderForm.controls['name'].value === null || 
+    this.manageOrderForm.controls['email'].value === null || 
+    this.manageOrderForm.controls['contactNumber'].value === null || 
+    this.manageOrderForm.controls['paymentMethod'].value === null || 
+    !(this.manageOrderForm.controls['contactNumber'].valid) || 
+    !(this.manageOrderForm.controls['email'].valid))
       return true;
     else
       return false;
@@ -129,56 +140,79 @@ export class ManageOrderComponent implements OnInit {
 
   add() {
     var formData = this.manageOrderForm.value;
-    var productName = this.dataSource.find((e: { id: number; }) => e.id == formData.product.id);
+    var productName = this.dataSource.find((e:{id:number;}) => e.id == formData.product.id);
     if (productName === undefined) {
       this.totalAmount = this.totalAmount + formData.total;
-      this.dataSource.push({ id: formData.product.id, name: formData.product.name, category: formData.category.name, quantity: formData.quantity, price: formData.price, total: formData.total });
-      this.dataSource =[...this.dataSource];
-      this.snackbarService.openSnackBar(GlobalConstants.productAdded,"success");
+      this.dataSource.push({
+        id:formData.product.id, name:formData.product.name, category:formData.category.name,
+        quantity:formData.quantity, price: formData.price, total: formData.total 
+      });
+
+      this.dataSource = [...this.dataSource];
+      this.snackbarService.openSnackBar(GlobalConstants.productAdded,"Success");
     }
     else {
       this.snackbarService.openSnackBar(GlobalConstants.productExistError, GlobalConstants.error);
     }
   }
-handleDeleteAction(value:any,element:any){
-  this.totalAmount = this.totalAmount - element.total;
-  this.dataSource.splice(value,1);
-  this.dataSource = [...this.dataSource];
-}
 
-submitAction(){
-  var formData = this.manageOrderForm.value;
-  var data ={
-    name : formData.name,
-    email :formData.email,
-    contactNumber : formData.contactNumber,
-    paymentMethod : formData.paymentMethod,
-    totalAmount : formData.totalAmount,
-    productDetails : JSON.stringify(this.dataSource)
+  handleDeleteAction(value:any,element:any){
+    this.totalAmount = this.totalAmount - element.total;
+    this.dataSource.splice(value,1);
+    this.dataSource = [...this.dataSource];
   }
-  this.billService.generateReport(data).subscribe((response:any)=>{
-    this.downloadFile(response?.uuid);
-    this.manageOrderForm.reset();
-    this.totalAmount=0;
-  }, (error: any) => {
-    this.ngxService.stop();
-    if (error.error?.message) {
-      this.responseMessage = error.error?.message;
-    }
-    else {
-      this.responseMessage = GlobalConstants.genericError;
-    }
-    this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
-  })
-}
-downloadFile(fileName:any){
-var data={
-  uuid:__filename
-}
-this.billService.getPDF(data).subscribe((response:any)=>{
-  saveAs(response,fileName+'.pdf');
-  this.ngxService.stop();
-})
-}
 
+  submitAction(){
+    this.ngxService.start();
+    var formData = this.manageOrderForm.value;
+    var data ={
+      name : formData.name,
+      email :formData.email,
+      contactNumber : formData.contactNumber,
+      paymentMethod : formData.paymentMethod,
+      totalAmount : formData.totalAmount,
+      productDetails : JSON.stringify(this.dataSource)
+    }
+    this.billService.generateReport(data).subscribe((response:any)=>{
+      this.downloadFile(response?.uuid);
+      this.manageOrderForm.reset();
+      this.dataSource = [];
+      this.totalAmount=0;
+      console.log('Order submission successful.');
+    }, (error: any) => {
+      this.ngxService.stop();
+      console.log('Error response:', error);
+      if (error.error?.message) {
+        this.responseMessage = error.error?.message;
+      }
+      else {
+        this.responseMessage = GlobalConstants.genericError;
+      }
+      this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
+    })
+  }
+
+  downloadFile(fileName:any){
+    var data={
+      uuid:fileName
+    }
+    this.billService.getPDF(data).subscribe((response:any)=>{
+      saveAs(response,fileName+'.pdf');
+      this.ngxService.stop();
+    })
+  }
+
+  handleViewAction(values: any) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      productDetails: values.productDetails // Pass the productDetails data to the dialog
+    };
+    dialogConfig.width = "100%";
+
+    const dialogRef = this.dialog.open(ViewBillProductsComponent, dialogConfig);
+    this.router.events.subscribe(() => {
+      dialogRef.close();
+    });
+  }
+  
 }

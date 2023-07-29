@@ -41,7 +41,8 @@ import { ManageUserComponent } from './manage-user/manage-user.component';
     ManageProductComponent, 
     ProductComponent,
     ViewBillComponent,
-    ManageUserComponent    
+    ManageUserComponent,
+    ManageOrderComponent  
   ]
 })
 export class MaterialComponentsModule {}

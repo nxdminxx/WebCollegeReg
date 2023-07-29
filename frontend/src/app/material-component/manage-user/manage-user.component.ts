@@ -13,7 +13,7 @@ import { GlobalConstants } from 'src/app/shared/global-constants';
 })
 export class ManageUserComponent implements OnInit {
 
-  displayedColumns:string[]=['name','email','contactNumber','Status'];
+  displayedColumns:string[]=['name','email','contactNumber','status'];
   dataSource:any;
   responseMessage:any;
 
@@ -22,13 +22,13 @@ export class ManageUserComponent implements OnInit {
     private snackBarService:SnackbarService) { }
 
   ngOnInit(): void {
-    this.ngxService.start();
+    //this.ngxService.start();
     this.tableData;
   }
 
   tableData(){
     this.userService.getUsers().subscribe((response:any)=>{
-      this.ngxService.stop();
+      //this.ngxService.stop();
       this.dataSource = new MatTableDataSource(response);
     },(error:any)=>{
       this.ngxService.stop();

@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row fxLayout="row">
-        <span class="title-center">{{dialogData.action}} Product</span>
+        <span class="title-center">{{dialogData.action}} Room</span>
     </mat-toolbar-row>
 </mat-toolbar>
 
@@ -50,6 +50,6 @@
 
 <mat-dialog-actions align="center">
     <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()" 
-    [disabled]="!(productForm.valid && productForm)">{{action}}</button>
+    [disabled]="!(productForm.valid && productForm.dirty)">{{action}}</button>
     <button mat-raised-button color="primary" mat-dialog-close>Close</button>
 </mat-dialog-actions>

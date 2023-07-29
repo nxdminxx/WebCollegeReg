@@ -21,7 +21,8 @@ export class ViewBillComponent implements OnInit {
   dataSource:any;
   responseMessage:any;
 
-  constructor(private billService:BillService,
+  constructor(
+    private billService:BillService,
     private ngxService:NgxUiLoaderService,
     private dialog:MatDialog,
     private snackbarService:SnackbarService,
@@ -32,6 +33,7 @@ export class ViewBillComponent implements OnInit {
     this.ngxService.start();
     this.tableData();
   }
+
 tableData(){
   this.billService.getBills().subscribe((response:any)=>{
     this.ngxService.stop();
@@ -42,7 +44,7 @@ tableData(){
       this.responseMessage = error.error?.message;
     }
     else{
-      this.responseMessage=GlobalConstants.genericError;
+      this.responseMessage = GlobalConstants.genericError;
     }
     this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
   })
@@ -54,15 +56,15 @@ applyFilter(event:Event){
 }
 
 handleViewAction(values:any){
-const dialogConfig = new MatDialogConfig();
-dialogConfig.data={
-  data:values
-};
-dialogConfig.width="100%";
-const dialogRef = this.dialog.open(ViewBillProductsComponent,dialogConfig);
-this.router.events.subscribe(()=>{
-  dialogRef.close();
-})
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.data={
+    data:values
+  };
+  dialogConfig.width="100%";
+  const dialogRef = this.dialog.open(ViewBillProductsComponent,dialogConfig);
+  this.router.events.subscribe(()=>{
+    dialogRef.close();
+  })
 }
 
 downloadReportAction(values:any){
@@ -73,7 +75,7 @@ downloadReportAction(values:any){
     uuid:values.uuid,
     contactNumber:values.contactNumber,
     paymentMethod:values.paymentMethod,
-    totalAmount:values.totalAmount,
+    totalAmount:values.total,
     productDetails:values.productDetails
   }
   this.billService.getPDF(data).subscribe(
@@ -101,14 +103,14 @@ deleteProduct(id:any){
     this.ngxService.stop();
     this.tableData();
     this.responseMessage = response?.message;
-    this.snackbarService.openSnackBar(this.responseMessage,"success");
+    this.snackbarService.openSnackBar(this.responseMessage,"Success");
   },(error:any)=>{
     this.ngxService.stop();
     if(error.error?.message){
       this.responseMessage = error.error?.message;
     }
     else{
-      this.responseMessage=GlobalConstants.genericError;
+      this.responseMessage = GlobalConstants.genericError;
     }
     this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
   })

@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row fxLayout="row">
-        <span class="title-center">View Bill</span>
+        <span class="title-center">View Booking</span>
         <span class="spacer"></span>
         <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
             <mat-icon>cancel</mat-icon>
@@ -43,7 +43,7 @@
                 <td mat-cell *matCellDef="let element">{{element.total}}</td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
-            <tr mat-row *matRowDef="let roq;columns:displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row;columns:displayedColumns;"></tr>
         </table>
     </div>
 </mat-dialog-content>

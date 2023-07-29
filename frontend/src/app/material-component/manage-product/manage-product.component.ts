@@ -18,7 +18,7 @@ import { ConfirmationComponent } from '../dialog/confirmation/confirmation.compo
 
 export class ManageProductComponent implements OnInit {
 
-  displayedColumns:string[] = ['name','RoomName','description','price','edit'];
+  displayedColumns:string[] = ['name','categoryName','description','price','edit'];
   dataSource:any;
   responseMessage:any;
 
@@ -94,7 +94,7 @@ export class ManageProductComponent implements OnInit {
   handleDeleteAction(values:any){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data={
-      message:'delete '+values.name+' product'
+      message:'delete '+values.name+' room'
     };
     const dialogRef=this.dialog.open(ConfirmationComponent,dialogConfig);
     const sub = dialogRef.componentInstance.onEmitstatusChange.subscribe((response)=>{

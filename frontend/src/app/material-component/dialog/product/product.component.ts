@@ -46,74 +46,76 @@ export class ProductComponent implements OnInit {
     }
     this.getCategorys();
   }
-  
-getCategorys(){
-  this.categoryService.getCategorys().subscribe((Response:any)=>{
-    this.categorys = Response;
-  },(error:any)=>{
-    if(error.error?.message){
-    this.responseMessage = error.error?.message;
+    
+  getCategorys(){
+    this.categoryService.getCategorys().subscribe((Response:any)=>{
+      this.categorys = Response;
+    },(error:any)=>{
+      if(error.error?.message){
+      this.responseMessage = error.error?.message;
+    }
+    else{
+      this.responseMessage =  GlobalConstants.genericError;
+    }
+    this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
+    })
   }
-  else{
-    this.responseMessage =  GlobalConstants.genericError;
-  }
-  this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
-  })
-}
-handleSubmit(){
-  if(this.dialogAction === 'Edit'){
-    this.edit();
-  }
-  else{
-    this.add();
-  }
-}
-add(){
-  var formData = this.productForm.value;
-  var data = {
-    name:formData.name,
-    categoryId:formData.categoryId,
-    price:formData.price,
-    description:formData.description
-  }
-  this.productService.add(data).subscribe((response:any)=>{
-    this.dialogRef.close();
-    this.onAddProduct.emit();
-    this.responseMessage = response.message;
-    this.snackbarService.openSnackBar(this.responseMessage,"success");
-  },(error:any)=>{
-    if(error.error?.message){
-    this.responseMessage = error.error?.message;
-  }
-  else{
-    this.responseMessage =  GlobalConstants.genericError;
-  }
-  this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
-  })
-}
 
-edit(){
-  var formData = this.productForm.value;
-  var data = {
-    id: this.dialogData.data.id,
-    name:formData.name,
-    categoryId:formData.categoryId,
-    price:formData.price,
-    description:formData.description
+  handleSubmit(){
+    if(this.dialogAction === 'Edit'){
+      this.edit();
+    }
+    else{
+      this.add();
+    }
   }
-    this.productService.update(data).subscribe((response:any)=>{
-    this.dialogRef.close();
-    this.onEditProduct.emit();
-    this.responseMessage = response.message;
-    this.snackbarService.openSnackBar(this.responseMessage,"success");
-  },(error:any)=>{
-    if(error.error?.message){
-    this.responseMessage = error.error?.message;
+
+  add(){
+    var formData = this.productForm.value;
+    var data = {
+      name:formData.name,
+      categoryId:formData.categoryId,
+      price:formData.price,
+      description:formData.description
+    }
+    this.productService.add(data).subscribe((response:any)=>{
+      this.dialogRef.close();
+      this.onAddProduct.emit();
+      this.responseMessage = response.message;
+      this.snackbarService.openSnackBar(this.responseMessage,"success");
+    },(error:any)=>{
+      if(error.error?.message){
+      this.responseMessage = error.error?.message;
+    }
+    else{
+      this.responseMessage =  GlobalConstants.genericError;
+    }
+    this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
+    })
   }
-  else{
-    this.responseMessage =  GlobalConstants.genericError;
+
+  edit(){
+    var formData = this.productForm.value;
+    var data = {
+      id: this.dialogData.data.id,
+      name:formData.name,
+      categoryId:formData.categoryId,
+      price:formData.price,
+      description:formData.description
+    }
+      this.productService.update(data).subscribe((response:any)=>{
+      this.dialogRef.close();
+      this.onEditProduct.emit();
+      this.responseMessage = response.message;
+      this.snackbarService.openSnackBar(this.responseMessage,"success");
+    },(error:any)=>{
+      if(error.error?.message){
+      this.responseMessage = error.error?.message;
+    }
+    else{
+      this.responseMessage =  GlobalConstants.genericError;
+    }
+    this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
+    })
   }
-  this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
-  })
-}
 }
