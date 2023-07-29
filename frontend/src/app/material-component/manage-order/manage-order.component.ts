@@ -9,10 +9,6 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 import { GlobalConstants } from 'src/app/shared/global-constants';
 import { saveAs } from 'file-saver';
 
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog'; // Import MatDialog
-import { Router } from '@angular/router'; // Import Router
-import { ViewBillProductsComponent } from '../dialog/view-bill-products/view-bill-products.component';
-
 @Component({
   selector: 'app-manage-order',
   templateUrl: './manage-order.component.html',
@@ -28,8 +24,6 @@ export class ManageOrderComponent implements OnInit {
   price: any;
   totalAmount: number = 0;
   responseMessage: any;
-  router: any;
-  dialog: any;
 
   constructor(private formBuilder: FormBuilder,
     private categoryService: CategoryService,
@@ -178,10 +172,8 @@ export class ManageOrderComponent implements OnInit {
       this.manageOrderForm.reset();
       this.dataSource = [];
       this.totalAmount=0;
-      console.log('Order submission successful.');
     }, (error: any) => {
       this.ngxService.stop();
-      console.log('Error response:', error);
       if (error.error?.message) {
         this.responseMessage = error.error?.message;
       }
@@ -201,18 +193,4 @@ export class ManageOrderComponent implements OnInit {
       this.ngxService.stop();
     })
   }
-
-  handleViewAction(values: any) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = {
-      productDetails: values.productDetails // Pass the productDetails data to the dialog
-    };
-    dialogConfig.width = "100%";
-
-    const dialogRef = this.dialog.open(ViewBillProductsComponent, dialogConfig);
-    this.router.events.subscribe(() => {
-      dialogRef.close();
-    });
-  }
-  
 }
