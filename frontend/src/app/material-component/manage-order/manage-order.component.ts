@@ -66,7 +66,7 @@ export class ManageOrderComponent implements OnInit {
   }
 
   getProductByCategory(value: any) {
-    this.productService.getProductByCategory(value.id).subscribe((response: any) => {
+    this.productService.getProductsByCategory(value.id).subscribe((response: any) => {
       this.products = response;
       this.manageOrderForm.controls['price'].setValue('');
       this.manageOrderForm.controls['quantity'].setValue('');
