@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -27,6 +28,8 @@ export class BillService {
   }
 
   delete(id:any){
-    return this.httpClient.delete
+    return this.httpClient.delete(this.url+"/bill/delete/"+id,{
+      headers: new HttpHeaders().set('Content-Type',"application/json")
+    })
   }
 }
