@@ -48,14 +48,16 @@ export class ManageProductComponent implements OnInit {
 
     })
   }
+
   applyFilter(event:Event){
     const filterValue=(event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  handleEditAction(value:any){
+  handleEditAction(value:any){}
+  handleAddAction(){}
+  handleDeleteAction(value:any){}
 
-  }
-
+  onChange(status:any,id:any){}
 
 }

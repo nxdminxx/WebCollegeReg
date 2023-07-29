@@ -1,6 +1,6 @@
 <mat-card>
     <b><span>Manage Product</span></b>
-    <button mat-flat-button color="primary" class="float-right" (click)="handleAddAction()"> Add Product</mat-flat-button></button>
+    <button mat-flat-button color="primary" class="float-right" (click)="handleAddAction()"> Add Product</button>
 </mat-card>
 <hr>
 <mat-card>
@@ -11,7 +11,7 @@
 </mat-card>
 <hr>
 <div class="responsive_table">
-    <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>Name</th>
             <th mat-cell *matCellDef="Let element">{{element.name}}</th>
