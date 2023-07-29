@@ -42,6 +42,7 @@
                         <span *ngIf="manageOrderForm.controls.paymentMethod.error.required">This field is mandatory.</span>
                         <span *ngIf="manageOrderForm.controls.paymentMethod.error.pattern">This field is invalid.</span>
                     </mat-error>
+                    </mat-select>
                 </mat-form-field>
             </div>
         </div>
@@ -74,7 +75,7 @@
                         <span *ngIf="manageOrderForm.controls.price.error.required">This field is mandatory.</span>
                         <span *ngIf="manageOrderForm.controls.price.error.pattern">This field is invalid.</span>
                     </mat-error>
-                </mat-form-field>
+            </mat-form-field>
                 <mat-form-field appearance="fill" fxFlex>
                     <mat-label>Quantity</mat-label>
                     <input matInput formControlName="quantity" required (keyup)="setQuantity($event)" #input>

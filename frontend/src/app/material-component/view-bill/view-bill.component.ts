@@ -8,6 +8,7 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 import { GlobalConstants } from 'src/app/shared/global-constants';
 import { ViewBillProductsComponent } from '../dialog/view-bill-products/view-bill-products.component';
 import { saveAs } from 'file-saver';
+import { ConfirmationComponent } from '../dialog/confirmation/confirmation.component';
 
 @Component({
   selector: 'app-view-bill',
@@ -89,7 +90,7 @@ handleDeleteAction(values:any){
     message : 'delete '+values.name+' bill'
   };
   const dialogRef = this.dialog.open(ConfirmationComponent,dialogConfig);
-  const sub = dialogRef.componentInstance.onEmitStatusChange.subscribe((response)=>{
+  const sub = dialogRef.componentInstance.onEmitstatusChange.subscribe((response)=>{
     this.ngxService.start();
     this.deleteProduct(values.id);
     dialogRef.close();
