@@ -22,13 +22,13 @@ export class ManageUserComponent implements OnInit {
     private snackBarService:SnackbarService) { }
 
   ngOnInit(): void {
-    //this.ngxService.start();
-    this.tableData;
+    this.ngxService.start();
+    this.tableData();
   }
 
   tableData(){
     this.userService.getUsers().subscribe((response:any)=>{
-      //this.ngxService.stop();
+      this.ngxService.stop();
       this.dataSource = new MatTableDataSource(response);
     },(error:any)=>{
       this.ngxService.stop();
